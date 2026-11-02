@@ -2,57 +2,103 @@
 <html lang="en">
 
 <head>
+    <!-- Basic page information -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Brown's Bakery | Enquiry</title>
+    <!-- SEO information -->
+    <meta name="description" content="Submit an enquiry to Brown's Bakery in Centurion about custom cakes, catering, special orders, products, sponsorship and volunteering.">
+
+    <meta name="keywords" content="Brown's Bakery, bakery enquiries, custom cakes Centurion, catering, special orders, bakery products, sponsorship, volunteering">
+
+    <meta name="author" content="Brown's Bakery">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Page title -->
+    <title>Make an Enquiry | Brown's Bakery in Centurion</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css_assets/style.css">
 </head>
 
 <body>
 
     <!-- Header and navigation -->
     <header>
+
         <h1>Brown's Bakery</h1>
 
-        <nav>
+        <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="products.html">Products</a>
             <a href="enquiry.html">Enquiry</a>
             <a href="contact.html">Contact</a>
         </nav>
+
     </header>
+
 
     <!-- Main content -->
     <main>
 
         <!-- Enquiry introduction -->
         <section>
+
             <h2>Make an Enquiry</h2>
 
             <p>
-                Have a question about a custom cake, catering or a special order?
-                Complete the form below and we will get back to you.
+                Have a question about a custom cake, catering, a special order
+                or one of our services? Complete the form below and we will
+                get back to you.
             </p>
+
         </section>
+
 
         <!-- Enquiry form -->
         <section>
-            <form>
+
+            <h2>Enquiry Form</h2>
+
+            <form id="enquiry-form">
 
                 <p>
                     <label for="name">Full Name:</label><br>
-                    <input type="text" id="name" name="name" required>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        minlength="2"
+                        maxlength="80"
+                        autocomplete="name"
+                        required>
                 </p>
 
                 <p>
                     <label for="email">Email Address:</label><br>
-                    <input type="email" id="email" name="email" required>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autocomplete="email"
+                        required>
                 </p>
 
                 <p>
                     <label for="phone">Phone Number:</label><br>
-                    <input type="tel" id="phone" name="phone">
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        pattern="[0-9+() -]{7,20}"
+                        title="Enter a valid phone number."
+                        autocomplete="tel"
+                        required>
                 </p>
 
                 <p>
@@ -60,35 +106,114 @@
 
                     <select id="enquiry-type" name="enquiry-type" required>
                         <option value="">Select an option</option>
-                        <option value="custom-cake">Custom Cake</option>
-                        <option value="catering">Catering</option>
-                        <option value="special-order">Special Order</option>
-                        <option value="other">Other</option>
+                        <option value="Custom Cake">Custom Cake</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Special Order">Special Order</option>
+                        <option value="Product Information">Product Information</option>
+                        <option value="Sponsorship">Sponsorship</option>
+                        <option value="Volunteering">Volunteering</option>
+                        <option value="Other">Other</option>
                     </select>
+                </p>
+
+                <p>
+                    <label for="event-date">Required Date (if applicable):</label><br>
+
+                    <input
+                        type="date"
+                        id="event-date"
+                        name="event-date">
                 </p>
 
                 <p>
                     <label for="message">Your Enquiry:</label><br>
 
-                    <textarea id="message"
-                              name="message"
-                              rows="6"
-                              cols="40"
-                              required></textarea>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        cols="40"
+                        minlength="10"
+                        maxlength="1000"
+                        placeholder="Please provide details about your enquiry..."
+                        required></textarea>
                 </p>
 
                 <button type="submit">Submit Enquiry</button>
 
             </form>
+
+            <p id="enquiry-feedback" role="status"></p>
+
         </section>
 
     </main>
 
+
     <!-- Footer -->
     <footer>
+
         <p>&copy; 2026 Brown's Bakery. All rights reserved.</p>
+
     </footer>
 
-</body>
 
+    <!-- Enquiry form JavaScript -->
+    <script>
+
+        const enquiryForm = document.getElementById("enquiry-form");
+        const eventDate = document.getElementById("event-date");
+
+        // Prevent visitors from selecting a date in the past
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const day = String(today.getDate()).padStart(2, "0");
+
+        eventDate.min = year + "-" + month + "-" + day;
+
+
+        // Enquiry form submission
+        enquiryForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            if (!enquiryForm.checkValidity()) {
+                enquiryForm.reportValidity();
+                return;
+            }
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const enquiryType = document.getElementById("enquiry-type").value;
+            const date = eventDate.value || "Not specified";
+            const message = document.getElementById("message").value.trim();
+
+            const subject = "Brown's Bakery Enquiry - " + enquiryType;
+
+            const body =
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Phone: " + phone + "\n" +
+                "Enquiry Type: " + enquiryType + "\n" +
+                "Required Date: " + date + "\n\n" +
+                "Enquiry Details:\n" + message;
+
+            const gmailURL =
+                "https://mail.google.com/mail/?view=cm&fs=1" +
+                "&to=" + encodeURIComponent("info@brownsbakery.co.za") +
+                "&su=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body);
+
+            document.getElementById("enquiry-feedback").textContent =
+                "Gmail is opening with your enquiry ready to send.";
+
+            window.open(gmailURL, "_blank");
+
+        });
+
+    </script>
+
+</body>
 </html>

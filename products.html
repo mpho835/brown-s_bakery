@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Brown's Bakery | Products</title>
+    <meta name="description" content="Explore the freshly baked breads, pastries, celebration cakes and beverages available at Brown's Bakery.">
+
+    <meta name="keywords" content="Brown's Bakery, fresh bread, pastries, celebration cakes, coffee, bakery products">
+
+    <title>Brown's Bakery | Our Products</title>
+
+    <link rel="stylesheet" href="css_assets/style.css">
 </head>
 
 <body>
@@ -23,25 +29,53 @@
         </nav>
     </header>
 
+
     <!-- Main content -->
     <main>
 
-        <!-- Bakery products -->
+        <!-- Bakery introduction -->
         <section>
             <h2>Our Products</h2>
 
             <p>
                 At Brown's Bakery, we offer a selection of freshly prepared
                 baked goods, cakes, light meals and beverages.
+                Explore our products and discover something delicious.
             </p>
         </section>
 
-        <!-- Bread and pastries -->
-        <section>
+
+        <!-- Product search -->
+        <section class="product-search">
+
+            <h2>Find a Product</h2>
+
+            <label for="product-search">
+                Search our products:
+            </label>
+
+            <input
+                type="search"
+                id="product-search"
+                placeholder="Search for bread, cakes, coffee..."
+            >
+
+        </section>
+
+
+        <!-- Freshly baked goods -->
+        <section class="product-item">
+
             <h2>Freshly Baked Goods</h2>
 
-            <img src="_images/pastry-selection.jpeg"
-             alt="A selection of different freshly baked pastries in a bakery">
+            <img
+                class="lightbox-image"
+                src="_images/pastry-selection.jpeg"
+                srcset="_images/pastry-selection.jpeg 600w,
+                        _images/pastry-selection.jpeg 1200w"
+                sizes="(max-width: 600px) 100vw, 1200px"
+                alt="A selection of freshly baked pastries in a bakery"
+            >
 
             <ul>
                 <li>Fresh breads</li>
@@ -50,43 +84,170 @@
                 <li>Pastries</li>
                 <li>Cookies</li>
             </ul>
+
         </section>
 
-        <!-- Cakes -->
-        <section>
+
+        <!-- Custom and celebration cakes -->
+        <section class="product-item">
+
             <h2>Custom and Celebration Cakes</h2>
 
-            <img src="_images/celebration-cake.jpeg"
-             alt="Celebration cake decorated with fresh strawberries and blueberries">
-
+            <img
+                class="lightbox-image"
+                src="_images/celebration-cake.jpeg"
+                alt="Celebration cake decorated with fresh strawberries and blueberries"
+            >
 
             <p>
                 We create cakes for birthdays, celebrations and other
                 special occasions.
             </p>
 
-            <a href="enquiry.html">Enquire About a Custom Cake</a>
+            <a href="enquiry.html">
+                Enquire About a Custom Cake
+            </a>
+
         </section>
 
-        <!-- Café -->
-        <section>
+
+        <!-- Café and beverages -->
+        <section class="product-item">
+
             <h2>Café and Beverages</h2>
 
-            <img src="_images/coffee-machine.jpeg"
-             alt="Fresh coffee being prepared using an espresso machine">
+            <img
+                class="lightbox-image"
+                src="_images/coffee-machine.jpeg"
+                alt="Fresh coffee being prepared using an espresso machine"
+            >
 
             <p>
                 Enjoy a selection of hot and cold beverages, along with
                 light meals in our welcoming café environment.
             </p>
+
+        </section>
+
+
+        <!-- Frequently Asked Questions -->
+        <section class="faq-section">
+
+            <h2>Frequently Asked Questions</h2>
+
+            <!-- Question 1 -->
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    What products does Brown's Bakery offer?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer" hidden>
+
+                    <p>
+                        We offer freshly baked breads, pastries,
+                        celebration cakes, light meals and beverages.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Question 2 -->
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    Can I order a custom celebration cake?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer" hidden>
+
+                    <p>
+                        Yes! We create custom cakes for birthdays,
+                        celebrations and other special occasions.
+                        Visit our Enquiry page to tell us what you need.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Question 3 -->
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    How can I enquire about product availability?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer" hidden>
+
+                    <p>
+                        You can submit an enquiry through our website's
+                        Enquiry page for more information about our products.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Question 4 -->
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    How can I contact Brown's Bakery?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer" hidden>
+
+                    <p>
+                        Visit our Contact page to send us a message
+                        or find our contact information.
+                    </p>
+
+                </div>
+
+            </div>
+
         </section>
 
     </main>
 
+
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Brown's Bakery. All rights reserved.</p>
+
+        <p>
+            &copy; 2026 Brown's Bakery. All rights reserved.
+        </p>
+
     </footer>
+
+
+    <!-- JavaScript -->
+    <script src="js assets/script.js"></script>
 
 </body>
 
