@@ -5,7 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Brown's Bakery | Contact</title>
+    <!-- SEO information -->
+    <meta name="description" content="Contact Brown's Bakery in Centurion. Find our locations, view opening hours and send us a message.">
+    <meta name="keywords" content="Brown's Bakery, contact bakery, Centurion bakery, bakery locations, bakery enquiries">
+    <meta name="author" content="Brown's Bakery">
+    <meta name="robots" content="index, follow">
+
+    <title>Contact Brown's Bakery | Centurion</title>
+
+    <link rel="stylesheet" href="css_assets/style.css">
+
+    <!-- Leaflet map stylesheet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
 </head>
 
 <body>
@@ -14,7 +29,7 @@
     <header>
         <h1>Brown's Bakery</h1>
 
-        <nav>
+        <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="products.html">Products</a>
@@ -22,6 +37,7 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
+
 
     <!-- Main content -->
     <main>
@@ -36,15 +52,26 @@
             </p>
         </section>
 
+
         <!-- Contact details -->
         <section>
             <h2>Get in Touch</h2>
 
-            <p><strong>Phone:</strong> 012 000 0000</p>
-            <p><strong>Email:</strong> info@brownsbakery.co.za</p>
+            <p>
+                <strong>Phone:</strong>
+                <a href="tel:0125628542">012 562 8542</a>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <a href="mailto:info@brownsbakery.co.za">
+                    info@brownsbakery.co.za
+                </a>
+            </p>
         </section>
 
-        <!-- First location -->
+
+        <!-- Centurion Mall location -->
         <section>
             <h2>Centurion Mall</h2>
 
@@ -62,18 +89,10 @@
             </ul>
         </section>
 
-        <!-- Second location -->
-        <section>
-            <h2>Find Us at Eco Park</h2>
 
-            <iframe
-        src="https://www.google.com/maps?q=Eco+Park,Centurion,Gauteng&output=embed"
-        width="600"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy">
-    </iframe>
+        <!-- Eco Park location -->
+        <section>
+            <h2>Eco Park</h2>
 
             <p>
                 Eco Park<br>
@@ -89,57 +108,207 @@
             </ul>
         </section>
 
-        <!-- Map placeholder -->
-        <section>
-            <h2>Find Us at Centurion Mall</h2>
 
-        <iframe
-    src="https://www.google.com/maps?q=Centurion+Mall,Centurion,Gauteng&output=embed"
-    width="600"
-    height="450"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy">
-</iframe>
+        <!-- Interactive Leaflet map -->
+        <section>
+
+            <h2>Find Our Locations</h2>
+
+            <p>
+                Explore the map below to view the Centurion Mall
+                and Eco Park areas.
+            </p>
+
+            <div
+                id="bakery-map"
+                style="height: 400px; width: 100%; border-radius: 10px;"
+                role="application"
+                aria-label="Interactive map showing Centurion Mall and Eco Park in Centurion">
+            </div>
+
+            <p>
+                <small>
+                    Map markers indicate the general location areas,
+                    not confirmed bakery entrances.
+                </small>
+            </p>
+
         </section>
+
 
         <!-- Contact form -->
         <section>
             <h2>Send Us a Message</h2>
 
-            <form>
+            <form id="contact-form">
+
                 <p>
                     <label for="contact-name">Full Name:</label><br>
-                    <input type="text" id="contact-name"
-                           name="contact-name" required>
+                    <input
+                        type="text"
+                        id="contact-name"
+                        name="contact-name"
+                        minlength="2"
+                        maxlength="80"
+                        autocomplete="name"
+                        required>
                 </p>
 
                 <p>
                     <label for="contact-email">Email Address:</label><br>
-                    <input type="email" id="contact-email"
-                           name="contact-email" required>
+                    <input
+                        type="email"
+                        id="contact-email"
+                        name="contact-email"
+                        autocomplete="email"
+                        required>
                 </p>
 
                 <p>
-                    <label for="contact-message">Message:</label><br>
-                    <textarea id="contact-message"
-                              name="contact-message"
-                              rows="6"
-                              cols="40"
-                              required></textarea>
+                    <label for="contact-phone">Phone Number:</label><br>
+                    <input
+                        type="tel"
+                        id="contact-phone"
+                        name="contact-phone"
+                        pattern="[0-9+() -]{7,20}"
+                        title="Enter a valid phone number."
+                        autocomplete="tel"
+                        required>
+                </p>
+
+                <p>
+                    <label for="message-type">Message Type:</label><br>
+
+                    <select id="message-type" name="message-type" required>
+                        <option value="">Select a message type</option>
+                        <option value="General Question">General Question</option>
+                        <option value="Product Information">Product Information</option>
+                        <option value="Compliment">Compliment</option>
+                        <option value="Complaint">Complaint</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="contact-message">Your Message:</label><br>
+
+                    <textarea
+                        id="contact-message"
+                        name="contact-message"
+                        rows="6"
+                        cols="40"
+                        minlength="10"
+                        maxlength="1000"
+                        required></textarea>
                 </p>
 
                 <button type="submit">Send Message</button>
+
             </form>
+
+            <p id="contact-feedback" role="status"></p>
         </section>
 
     </main>
+
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Brown's Bakery. All rights reserved.</p>
     </footer>
 
-</body>
 
+    <!-- Leaflet JavaScript library -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+    <!-- Interactive map functionality -->
+    <script>
+
+        // Create the map
+        const map = L.map("bakery-map");
+
+        // Add OpenStreetMap tiles
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+
+        // Centurion Mall location
+        const centurionMall = [-25.85651, 28.18742];
+
+        // Approximate Eco Park area
+        const ecoPark = [-25.87683, 28.17637];
+
+
+        // Add Centurion Mall marker
+        L.marker(centurionMall)
+            .addTo(map)
+            .bindPopup("<strong>Centurion Mall</strong><br>Centurion, Gauteng");
+
+
+        // Add Eco Park marker
+        L.marker(ecoPark)
+            .addTo(map)
+            .bindPopup("<strong>Eco Park</strong><br>Approximate area, Centurion");
+
+
+        // Automatically show both locations
+        const locations = L.latLngBounds(
+            centurionMall,
+            ecoPark
+        );
+
+        map.fitBounds(locations, {
+            padding: [40, 40]
+        });
+
+    </script>
+
+
+    <!-- Contact form JavaScript -->
+    <script>
+
+        const contactForm = document.getElementById("contact-form");
+
+        contactForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
+
+            const name = document.getElementById("contact-name").value.trim();
+            const email = document.getElementById("contact-email").value.trim();
+            const phone = document.getElementById("contact-phone").value.trim();
+            const messageType = document.getElementById("message-type").value;
+            const message = document.getElementById("contact-message").value.trim();
+
+            const subject = "Brown's Bakery - " + messageType;
+
+            const body =
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Phone: " + phone + "\n" +
+                "Message Type: " + messageType + "\n\n" +
+                "Message:\n" + message;
+
+            const gmailURL =
+                "https://mail.google.com/mail/?view=cm&fs=1" +
+                "&to=" + encodeURIComponent("info@brownsbakery.co.za") +
+                "&su=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body);
+
+            document.getElementById("contact-feedback").textContent =
+                "Gmail is opening with your message ready to send.";
+
+            window.open(gmailURL, "_blank");
+
+        });
+
+    </script>
+
+</body>
 </html>
